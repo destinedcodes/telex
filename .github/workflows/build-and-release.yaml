@@ -41,7 +41,7 @@ jobs:
 
     - name: Restore NuGet packages at the project level
       shell: pwsh
-      run: dotnet restore ${{ env.PROJECT_FILE }} -r win-x64 -p:PublishReadyToRun=true
+      run: dotnet restore ${{ env.PROJECT_FILE }} -r android-arm64 -r win-x64
 
     - name: Build Maui Android project
       shell: pwsh
@@ -51,7 +51,7 @@ jobs:
     - name: Publish Android app
       shell: pwsh
       run: |
-        dotnet publish ${{ env.PROJECT_FILE }} -f net7.0-android -c Release -p:AndroidPackageFormat=aab -o ${{ github.workspace }}/output
+        dotnet publish ${{ env.PROJECT_FILE }} -f net8.0-android -c Release -p:AndroidPackageFormat=aab -o ${{ github.workspace }}/output
 
     - name: Upload Android artifact
       uses: actions/upload-artifact@v3
