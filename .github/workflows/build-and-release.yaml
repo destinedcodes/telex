@@ -8,6 +8,7 @@ on:
 
 env:
   PROJECT_PATH: "MauiApp1.sln"
+  PROJECT_FILE: "MauiApp1/MauiApp1.csproj"
 
 jobs:
   build-android:
@@ -38,18 +39,18 @@ jobs:
       shell: pwsh
       run: dotnet workload install maui --source https://api.nuget.org/v3/index.json
 
-    - name: Restore NuGet packages
+    - name: Restore NuGet packages at the project level
       shell: pwsh
-      run: dotnet restore ${{ env.PROJECT_PATH }} -r win-x64
+      run: dotnet restore ${{ env.PROJECT_FILE }} -r win-x64
 
     - name: Build Maui Android project
       shell: pwsh
-      run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishTrimmed=False
+      run: dotnet build ${{ env.PROJECT_FILE }} -c Release --no-restore -p:PublishTrimmed=False -r win-x64
 
     - name: Publish Android app
       shell: pwsh
       run: |
-        dotnet publish ${{ env.PROJECT_PATH }} -f net7.0-android -c Release -p:AndroidPackageFormat=aab -o ${{ github.workspace }}/output
+        dotnet publish ${{ env.PROJECT_FILE }} -f net7.0-android -c Release -p:AndroidPackageFormat=aab -o ${{ github.workspace }}/output
 
     - name: Upload Android artifact
       uses: actions/upload-artifact@v3
