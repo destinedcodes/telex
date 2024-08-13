@@ -105,7 +105,7 @@ jobs:
     - name: Publish macOS app
       shell: bash
       run: |
-        dotnet publish ${{ env.PROJECT_FILE }} -f net8.0-maccatalyst -c Release -r osx-x64 -o ${{ github.workspace }}/output
+        dotnet publish ${{ env.PROJECT_FILE }} -f net8.0-maccatalyst -c Release -r osx-x64 -p:Platform=x64 -o ${{ github.workspace }}/output
 
     - name: Upload macOS artifact
       uses: actions/upload-artifact@v3
