@@ -41,7 +41,7 @@ jobs:
 
     - name: Restore NuGet packages at the project level
       shell: pwsh
-      run: dotnet restore ${{ env.PROJECT_FILE }} -r android-arm64 -r win-x64
+      run: dotnet restore ${{ env.PROJECT_FILE }} -r android-arm64
 
     - name: Build Maui Android project
       shell: pwsh
