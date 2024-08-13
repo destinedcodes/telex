@@ -39,14 +39,9 @@ jobs:
       shell: pwsh
       run: dotnet workload install maui --source https://api.nuget.org/v3/index.json
 
-    - name: Restore NuGet packages at the project level
+    - name: Restore NuGet packages
       shell: pwsh
-      run: dotnet restore ${{ env.PROJECT_FILE }} -r android-arm64
-
-    - name: Build Maui Android project
-      shell: pwsh
-      run: |
-        dotnet build MauiApp1/MauiApp1.csproj -c Release --no-restore -p:PublishTrimmed=True -p:PublishReadyToRun=true -r android-arm64
+      run: dotnet restore ${{ env.PROJECT_FILE }}
 
     - name: Publish Android app
       shell: pwsh
