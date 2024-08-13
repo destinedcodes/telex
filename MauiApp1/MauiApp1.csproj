@@ -3,7 +3,6 @@
   <PropertyGroup>
     <!-- Target all the relevant frameworks -->
     <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst;net8.0-windows10.0.19041.0</TargetFrameworks>
-    <RuntimeIdentifiers>android-arm64;ios-arm64;maccatalyst-x64;win-x64</RuntimeIdentifiers>
 
     <!-- Common properties -->
     <OutputType>Exe</OutputType>
