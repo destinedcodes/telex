@@ -44,7 +44,7 @@ jobs:
 
     - name: Build Maui Android project
       shell: pwsh
-      run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -r win-x64 -p:PublishTrimmed=False
+      run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishTrimmed=False
 
     - name: Publish Android app
       shell: pwsh
