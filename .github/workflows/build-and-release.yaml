@@ -6,6 +6,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   PROJECT_FILE: "MauiApp1/MauiApp1.csproj"
 
