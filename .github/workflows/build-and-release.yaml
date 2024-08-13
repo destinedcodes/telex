@@ -46,7 +46,7 @@ jobs:
     - name: Build Maui Android project
       shell: pwsh
       run: |
-        dotnet build MauiApp1/MauiApp1.csproj -c Release --no-restore -p:PublishTrimmed=False -p:PublishReadyToRun=true -r win-x64 -p:Platform=x64
+        dotnet build MauiApp1/MauiApp1.csproj -c Release --no-restore -p:PublishTrimmed=True -p:PublishReadyToRun=true -r android-arm64
 
     - name: Publish Android app
       shell: pwsh
