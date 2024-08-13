@@ -40,11 +40,11 @@ jobs:
 
     - name: Restore NuGet packages
       shell: pwsh
-      run: dotnet restore ${{ env.PROJECT_PATH }}
+      run: dotnet restore ${{ env.PROJECT_PATH }} -r win-x64
 
     - name: Build Maui Android project
       shell: pwsh
-      run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -p:PublishTrimmed=False
+      run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore -r win-x64 -p:PublishTrimmed=False
 
     - name: Publish Android app
       shell: pwsh
