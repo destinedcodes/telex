@@ -76,6 +76,16 @@ jobs:
       shell: pwsh
       run: dotnet restore ${{ env.PROJECT_FILE }}
 
+    - name: Install Code Signing Certificate
+      run: |
+        $securePassword = ConvertTo-SecureString $env:SIGNING_CERTIFICATE_PASSWORD -AsPlainText -Force
+        $certPath = "$env:USERPROFILE\signing_certificate.pfx"
+        [System.IO.File]::WriteAllBytes($certPath, [System.Convert]::FromBase64String($env:SIGNING_CERTIFICATE))
+        Import-PfxCertificate -FilePath $certPath -CertStoreLocation Cert:\CurrentUser\My -Password $securePassword
+      env:
+        SIGNING_CERTIFICATE: ${{ secrets.SIGNING_CERTIFICATE }}
+        SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
+
     - name: Publish Windows app
       shell: pwsh
       run: |
